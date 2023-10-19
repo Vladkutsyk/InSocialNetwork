@@ -1,0 +1,148 @@
+[{
+  "_id": {
+    "$oid": "65312c04d2dc6cc4d30760ca"
+  },
+  "first_name": "Ano",
+  "last_name": "Bano",
+  "username": "kotyk",
+  "email": "kotyk@gmail.com",
+  "password": "anak",
+  "interests": [
+    "football"
+  ],
+  "friends": []
+},
+{
+  "_id": {
+    "$oid": "6531338bffdbc322b92bdc27"
+  },
+  "first_name": "Bno",
+  "last_name": "Fano",
+  "username": "kot",
+  "email": "kot@gmail.com",
+  "password": "anakonda",
+  "interests": [
+    "footbill"
+  ],
+  "friends": [
+    "653133d5ffdbc322b92bdc28"
+  ]
+},
+{
+  "_id": {
+    "$oid": "653133d5ffdbc322b92bdc28"
+  },
+  "first_name": "LNAno",
+  "last_name": "KLano",
+  "username": "bot",
+  "email": "botyk@gmail.com",
+  "password": "anakira",
+  "interests": [
+    "volball"
+  ],
+  "friends": []
+},
+{
+  "_id": {
+    "$oid": "65313416ffdbc322b92bdc29"
+  },
+  "first_name": "Bio",
+  "last_name": "Baino",
+  "username": "lityk",
+  "email": "lityk@gmail.com",
+  "password": "liba",
+  "interests": [
+    "gagga"
+  ],
+  "friends": []
+},
+{
+  "_id": {
+    "$oid": "6531348effdbc322b92bdc2a"
+  },
+  "first_name": "Bata",
+  "last_name": "Hao",
+  "username": "lalak",
+  "email": "lalak@gmail.com",
+  "password": "buiba",
+  "interests": [
+    "gagarka"
+  ],
+  "friends": [
+    "653133d5ffdbc322b92bdc28"
+  ]
+},
+{
+  "_id": {
+    "$oid": "65313561ffdbc322b92bdc2b"
+  },
+  "first_name": "Arkano",
+  "last_name": "Aramei",
+  "username": "aruna",
+  "email": "aruna@gmail.com",
+  "password": "arna",
+  "interests": [
+    "basketball"
+  ],
+  "friends": []
+},
+{
+  "_id": {
+    "$oid": "653135a7ffdbc322b92bdc2c"
+  },
+  "first_name": "Artarasa",
+  "last_name": "Kurasa",
+  "username": "duchi",
+  "email": "duchi@gmail.com",
+  "password": "apache",
+  "interests": [
+    "basketvali"
+  ],
+  "friends": [
+    "653133d5ffdbc322b92bdc28"
+  ]
+},
+{
+  "_id": {
+    "$oid": "65313657ffdbc322b92bdc2d"
+  },
+  "first_name": "Lisa",
+  "last_name": "Bey",
+  "username": "beyina",
+  "email": "beyina@gmail.com",
+  "password": "bura",
+  "interests": [
+    "tennis"
+  ],
+  "friends": []
+},
+{
+  "_id": {
+    "$oid": "6531368fffdbc322b92bdc2e"
+  },
+  "first_name": "Mark",
+  "last_name": "Goriano",
+  "username": "gira",
+  "email": "giraga@gmail.com",
+  "password": "akuneto",
+  "interests": [
+    "swimming"
+  ],
+  "friends": []
+},
+{
+  "_id": {
+    "$oid": "653136dfffdbc322b92bdc2f"
+  },
+  "first_name": "Markiano",
+  "last_name": "Goreto",
+  "username": "girata",
+  "email": "girataro@gmail.com",
+  "password": "12ab",
+  "interests": [
+    "gininino"
+  ],
+  "friends": [
+    "6531368fffdbc322b92bdc2e"
+  ]
+}]
