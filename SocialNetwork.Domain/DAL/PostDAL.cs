@@ -1,4 +1,5 @@
-﻿using MongoDB.Bson;
+﻿using Microsoft.VisualBasic.ApplicationServices;
+using MongoDB.Bson;
 using MongoDB.Driver;
 using SocialNetwork.DTO;
 using System;
@@ -40,10 +41,16 @@ namespace SocialNetwork.DAL
             return posts.Find(y => y.UserIdPost == userId).ToList();
         }
 
-        public static string AddPost(Post post)
+        public static string AddPost(string userId, string text)
         {
-            posts.InsertOneAsync(post).Wait();
-            return post.Id;
+            Post ins = new Post();
+            ins.Likes = 0;
+            ins.LikeUsers = new List<string>() { };
+            ins.Content = text;
+            ins.UserIdPost = userId;
+            ins.Date = DateTime.Now;
+            posts.InsertOneAsync(ins);
+            return text;
         }
 
         public static void LikePost(string postId, string likerId)

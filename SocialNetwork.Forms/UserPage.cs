@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using SocialNetwork.DAL;
+using SocialNetwork.UserBLL;
 
 namespace SocialNetwork.Forms
 {
@@ -47,14 +48,18 @@ namespace SocialNetwork.Forms
 
         private void button4_Click(object sender, EventArgs e)
         {
-            UserDAL.NewFriend(currentId, boxFriend.Text.ToString());
+            UserBLL.UserBLL.AddFriend(currentId, boxFriend.Text.ToString());
+            //UserDAL.NewFriend(currentId, boxFriend.Text.ToString());
             reload_friends(sender, e);
+            //Using UserBLL
         }
 
         public void reload_friends(object sender, EventArgs e)
         {
             friends.DataSource = UserDAL.GetUsers();
             postsFriends.DataSource = PostDAL.GetSortedPosts();
+            friendCheckBox.Clear();
+            lengthBox.Clear();
         }
         private void button3_Click(object sender, EventArgs e)
         {
@@ -68,18 +73,35 @@ namespace SocialNetwork.Forms
 
         private void button8_Click(object sender, EventArgs e)
         {
-            UserDAL.DeleteFriend(currentId, boxFriend.Text.ToString());
+            UserBLL.UserBLL.DeleteFriend(currentId, boxFriend.Text.ToString());
+            //UserBLL.DeleteFriend(currentId, boxFriend.Text.ToString());
             reload_friends(sender, e);
+            //Using UserBLL
         }
 
         private void friends_SelectionChanged(object sender, EventArgs e)
         {
-            postsFriends.DataSource = PostDAL.GetUserPosts(postsFriends.SelectedRows[0].Cells[0].Value.ToString());
+            var tuple = UserBLL.UserBLL.OnSelectionChanged(currentId, postsFriends.SelectedRows[0].Cells[0].Value.ToString());
+            friendCheckBox.Text = tuple.Item1.ToString();
+            lengthBox.Text = tuple.Item2.ToString();
+            postsFriends.DataSource = tuple.Item3;
+            //postsFriends.DataSource = PostDAL.GetUserPosts(postsFriends.SelectedRows[0].Cells[0].Value.ToString());
+            //Using UserBLL
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
             CommentDAL.AddComment(posts.SelectedRows[0].Cells[0].Value.ToString(), currentId, commentBox.Text.ToString());
+        }
+
+        private void addPost_Click(object sender, EventArgs e)
+        {
+            PostDAL.AddPost(currentId, postBox.Text.ToString());
+        }
+
+        private void backButton_Click(object sender, EventArgs e)
+        {
+            reload_friends(sender, e);
         }
     }
 }
