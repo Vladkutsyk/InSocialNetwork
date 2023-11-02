@@ -1,0 +1,34 @@
+[{
+  "_id": {
+    "$oid": "653137e3ffdbc322b92bdc33"
+  },
+  "userId": "65312c04d2dc6cc4d30760ca",
+  "postId": "65313972ffdbc322b92bdc38",
+  "content": "go walking",
+  "likes": 1,
+  "likeUsers": [
+    "6531338bffdbc322b92bdc27"
+  ]
+},
+{
+  "_id": {
+    "$oid": "65313851ffdbc322b92bdc34"
+  },
+  "userId": "6531338bffdbc322b92bdc27",
+  "postId": "65313a64ffdbc322b92bdc39",
+  "content": "go sleeping",
+  "likes": 0,
+  "likeUsers": []
+},
+{
+  "_id": {
+    "$oid": "65313864ffdbc322b92bdc35"
+  },
+  "userId": "65312c04d2dc6cc4d30760ca",
+  "postId": "65313a6affdbc322b92bdc3a",
+  "content": "good job",
+  "likes": 1,
+  "likeUsers": [
+    "65312c04d2dc6cc4d30760ca"
+  ]
+}]
