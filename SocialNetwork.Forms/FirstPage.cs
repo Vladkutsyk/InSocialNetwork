@@ -28,7 +28,7 @@ namespace SocialNetwork.Forms
 
                 string userId = ReturnUserId();//UsersDAL.CheckLogin(tbLogin.Text, tbPassword.Text);
                 MessageBox.Show($"login was successful", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                newPage.FillInUserInformation(userId);
+                newPage.FillInUserInformation(userId, boxLogin.Text);
                 newPage.Show();
                 this.Hide();
             }

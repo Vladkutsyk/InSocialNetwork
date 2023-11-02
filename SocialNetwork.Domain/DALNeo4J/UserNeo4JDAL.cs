@@ -27,7 +27,7 @@ namespace SocialNetwork.DALNeo4J
                 .ExecuteWithoutResultsAsync().Wait();
         }
 
-        public static void DeleteUserNeo4J(string username )
+        public static void DeleteUserNeo4J(string username)
         {
             client.ConnectAsync().Wait();
             client.Cypher

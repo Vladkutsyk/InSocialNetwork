@@ -12,14 +12,13 @@ namespace SocialNetwork.DTONeo4J
     public class Comment
     {
 
-        [JsonProperty(PropertyName = "id")]
-        public string CommentID { get; set; }
+        [JsonProperty(PropertyName = "date")]
+        public DateTime CommentDate { get; set; }
 
         [JsonProperty(PropertyName = "author")]
         public string UsernameComment { get; set; }
 
         [JsonProperty(PropertyName = "content")]
         public string Content { get; set; }
-
     }
 }

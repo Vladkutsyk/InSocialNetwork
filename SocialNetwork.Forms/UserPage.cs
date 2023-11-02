@@ -15,13 +15,15 @@ namespace SocialNetwork.Forms
     public partial class UserPage : Form
     {
         private string currentId;
+        private string currentUsername;
         public UserPage()
         {
             InitializeComponent();
         }
-        public void FillInUserInformation(string userId)
+        public void FillInUserInformation(string userId, string usrname)
         {
             currentId = userId;
+            currentUsername = usrname;
         }
         private void posts_SelectionChanged(object sender, EventArgs e)
         {
@@ -81,7 +83,8 @@ namespace SocialNetwork.Forms
 
         private void friends_SelectionChanged(object sender, EventArgs e)
         {
-            var tuple = UserBLL.UserBLL.OnSelectionChanged(currentId, postsFriends.SelectedRows[0].Cells[0].Value.ToString());
+            var tuple = UserBLL.UserBLL.OnSelectionChanged(currentUsername, 
+                postsFriends.SelectedRows[0].Cells[0].Value.ToString(), postsFriends.SelectedRows[0].Cells[3].Value.ToString());
             friendCheckBox.Text = tuple.Item1.ToString();
             lengthBox.Text = tuple.Item2.ToString();
             postsFriends.DataSource = tuple.Item3;
@@ -91,12 +94,17 @@ namespace SocialNetwork.Forms
 
         private void button2_Click(object sender, EventArgs e)
         {
-            CommentDAL.AddComment(posts.SelectedRows[0].Cells[0].Value.ToString(), currentId, commentBox.Text.ToString());
+            CommentBLL.CreateComment(currentId, posts.SelectedRows[0].Cells[0].Value.ToString(),
+               commentBox.Text.ToString(), currentUsername);
+            //CommentBLL
+            //CommentDAL.AddComment(posts.SelectedRows[0].Cells[0].Value.ToString(), currentId, commentBox.Text.ToString());
         }
 
         private void addPost_Click(object sender, EventArgs e)
         {
-            PostDAL.AddPost(currentId, postBox.Text.ToString());
+            PostBLL.PostBLL.CreatePost(currentId, postBox.Text.ToString(), currentUsername);
+            //PostBLL
+            //PostDAL.AddPost(currentId, postBox.Text.ToString());
         }
 
         private void backButton_Click(object sender, EventArgs e)

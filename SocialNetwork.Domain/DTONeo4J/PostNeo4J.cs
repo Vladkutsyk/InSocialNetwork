@@ -12,14 +12,13 @@ namespace SocialNetwork.DTONeo4J
     public class Post
     {
 
-        [JsonProperty(PropertyName = "id")]
-        public string PostID { get; set; }
+        [JsonProperty(PropertyName = "date")]
+        public DateTime PostDate { get; set; }
 
         [JsonProperty(PropertyName = "author")]
         public string UsernamePost { get; set; }
 
         [JsonProperty(PropertyName = "content")]
         public string Content { get; set; }
-
     }
 }

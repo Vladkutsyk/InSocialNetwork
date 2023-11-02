@@ -27,10 +27,22 @@ namespace SocialNetwork.UserBLL
             SocialNetwork.DALNeo4J.UserNeo4JDAL.DeleteFriendConnectionNeo4J(currentId, oldId);
         }
 
-        static public Tuple<bool, int, List<DTO.Post>> OnSelectionChanged(string currentId, string getId)
+        static public Tuple<bool, int, List<DTO.Post>> OnSelectionChanged(string currentUsername, string getId, string getUsername)
         {
-            return Tuple.Create(UserNeo4JDAL.CheckFriendConnectionNeo4J(currentId, getId), 
-                UserNeo4JDAL.PathLengthNeo4J(currentId, getId), PostDAL.GetUserPosts(getId));   
+            return Tuple.Create(UserNeo4JDAL.CheckFriendConnectionNeo4J(currentUsername, getUsername), 
+                UserNeo4JDAL.PathLengthNeo4J(currentUsername, getUsername), PostDAL.GetUserPosts(getId));   
+        }
+
+        static public void AddUser(string firstname, string lastname, string username, string password, string email)
+        {
+            _ = SocialNetwork.DAL.UserDAL.AddUser(firstname, lastname, username, password, email);
+            SocialNetwork.DALNeo4J.UserNeo4JDAL.CreateUserNeo4J(firstname, lastname, username);
+        }
+
+        static public void DeleteUser(string currentId, string password, string currentUsername)
+        {
+            SocialNetwork.DAL.UserDAL.DeleteUser(currentId, password);
+            SocialNetwork.DALNeo4J.UserNeo4JDAL.DeleteUserNeo4J(currentUsername);
         }
     }
 }

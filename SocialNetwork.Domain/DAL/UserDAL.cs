@@ -102,14 +102,25 @@ namespace SocialNetwork.DAL
 
         }
 
+        public static string AddUser(string firstname, string lastname, string username, string password, string email)
+        {
+            User ins = new User();
+            ins.FirstName = firstname;
+            ins.LastName = lastname;
+            ins.Username = username;
+            ins.Password = password;
+            ins.Email = email;
+            ins.Interests = new List<string> { };
+            ins.Friends = new List<string> { };
+            users.InsertOneAsync(ins);
+            return username;
+        }
+
         public static void DeleteUser(string username, string password)
         {
-
-            var userId = CheckLogin(username, password);
-            var documentIdToDelete = ObjectId.Parse(userId).ToString();
-
-            var deleteResult = users.DeleteOne(Builders<User>.Filter.Eq(u => u.Id, documentIdToDelete));
-
+             var userId = CheckLogin(username, password);
+             var documentIdToDelete = ObjectId.Parse(userId).ToString();
+             var deleteResult = users.DeleteOne(Builders<User>.Filter.Eq(u => u.Id, documentIdToDelete));
         }
     }
 }

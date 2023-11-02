@@ -164,6 +164,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BLL\CommentBLL.cs" />
+    <Compile Include="BLL\PostBLL.cs" />
     <Compile Include="BLL\UserBLL.cs" />
     <Compile Include="DALNeo4J\CommentNeo4JDAL.cs" />
     <Compile Include="DALNeo4J\PostNeo4JDAL.cs" />
