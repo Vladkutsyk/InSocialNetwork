@@ -25,7 +25,9 @@ namespace SocialNetwork.Domain.DTODynamo
         [DynamoDBProperty]
         public string CommentText { get; set; }
         [DynamoDBProperty]
-        public DateTime ModifiedDateTime { get; set; }
+        public string ModifiedDateTime { get; set; }
+        [DynamoDBProperty]
+        public string ModifiedDateTimeSK { get; set; }
         [DynamoDBProperty]
         public bool IsDeleted { get; set; }
     }

@@ -38,7 +38,8 @@ namespace SocialNetwork.Domain.DALDynamo
             comment["UserID"] = userId;
             comment["Username"] = username;
             comment["CommentText"] = commentText;
-            comment["ModifiedDateTime"] = DateTime.Now;
+            comment["ModifiedDateTime"] = DateTime.Now.ToString();
+            comment["ModifiedDateTimeSK"] = "COMMENT#" + DateTime.Now.ToString() + ">";
             comment["IsDeleted"] = false;
 
             socialNetwork.PutItem(comment);
@@ -49,7 +50,8 @@ namespace SocialNetwork.Domain.DALDynamo
             var comment = new Document();
             comment["PK"] = "POST#<" + postId + ">";
             comment["SK"] = "COMMENT#<" + commentId + ">";
-            comment["ModifiedDateTime"] = DateTime.Now;
+            comment["ModifiedDateTime"] = DateTime.Now.ToString();
+            comment["ModifiedDateTimeSK"] = "COMMENT#" + DateTime.Now.ToString() + ">";
             comment["IsDeleted"] = true;
             socialNetwork.UpdateItem(comment);
         }
@@ -60,7 +62,8 @@ namespace SocialNetwork.Domain.DALDynamo
             comment["PK"] = "POST#<" + postId + ">";
             comment["SK"] = "COMMENT#<" + commentId + ">";
             comment["CommentText"] = commentText;
-            comment["ModifiedDateTime"] = DateTime.Now;
+            comment["ModifiedDateTime"] = DateTime.Now.ToString();
+            comment["ModifiedDateTimeSK"] = "COMMENT#<" + DateTime.Now.ToString() + ">";
             socialNetwork.UpdateItem(comment);
         }
 
@@ -118,11 +121,19 @@ namespace SocialNetwork.Domain.DALDynamo
             foreach (var currentItem in items)
             {
                 var doc = new Document();
+                bool deleted;
                 foreach (string attr in currentItem.Keys)
                 {
                     if(attr == "IsDeleted")
                     {
-                        doc[attr] = currentItem[attr].BOOL;
+                        deleted = currentItem[attr].BOOL;
+                    }
+                    else if (attr == "ModifiedDateTimeSK"){ continue; }
+                    else if(attr == "PK" || attr == "SK")
+                    {
+                        int ind = currentItem[attr].S.IndexOf('#');
+                        int len = currentItem[attr].S.Length;
+                        doc[attr] = currentItem[attr].S.Substring(ind + 2, len-ind-3);
                     }
                     else
                     {
@@ -130,6 +141,7 @@ namespace SocialNetwork.Domain.DALDynamo
                     }
                     
                 }
+                documentSet.Add(doc);
             }
             return documentSet;
         }
