@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using SocialNetwork.DAL;
+using SocialNetwork.Domain.BLL;
 using SocialNetwork.UserBLL;
 
 namespace SocialNetwork.Forms
@@ -65,12 +66,14 @@ namespace SocialNetwork.Forms
         }
         private void button3_Click(object sender, EventArgs e)
         {
-            CommentDAL.LikeComment(comments.SelectedRows[0].Cells[0].Value.ToString(), currentId);
+            // CommentDAL.LikeComment(comments.SelectedRows[0].Cells[0].Value.ToString(), currentId);
+            ReactionBLL.CreateReactionComment(currentId, comments.SelectedRows[0].Cells[0].Value.ToString(), currentUsername);
         }
         
         private void button5_Click(object sender, EventArgs e)
         {
-            CommentDAL.LikeBackComment(comments.SelectedRows[0].Cells[0].Value.ToString(), currentId);
+            //CommentDAL.LikeBackComment(comments.SelectedRows[0].Cells[0].Value.ToString(), currentId);
+            ReactionBLL.DeleteReactionComment(currentId, comments.SelectedRows[0].Cells[0].Value.ToString(), currentUsername);
         }
 
         private void button8_Click(object sender, EventArgs e)

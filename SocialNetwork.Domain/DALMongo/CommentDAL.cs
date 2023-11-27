@@ -46,8 +46,9 @@ namespace SocialNetwork.DAL
             ins.Content = comment;
             ins.UserIdComment = userId;
             ins.PostIdComment = postId;
-            comments.InsertOneAsync(ins);
-            return comment;
+            var task = comments.InsertOneAsync(ins);
+            task.Wait();
+            return Convert.ToString(ins.Id);
         }
 
 
@@ -71,6 +72,12 @@ namespace SocialNetwork.DAL
             var filter = Builders<Comment>.Filter.Eq(x => x.Id, postId);
             var update = Builders<Comment>.Update.Set("likeUsers", LikeUsers).Inc("likes", -1);
             comments.UpdateOne(filter, update);
+        }
+
+        public static void DeleteComment(string commentId)
+        {
+            var documentIdToDelete = ObjectId.Parse(commentId).ToString();
+            var deleteResult = comments.DeleteOne(Builders<Comment>.Filter.Eq(u => u.Id, documentIdToDelete));
         }
     }
 }

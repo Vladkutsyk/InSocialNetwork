@@ -34,7 +34,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="AWSSDK.Core, Version=3.3.0.0, Culture=neutral, PublicKeyToken=885c28607f98e604, processorArchitecture=MSIL">
-      <HintPath>..\packages\AWSSDK.Core.3.7.100.14\lib\net45\AWSSDK.Core.dll</HintPath>
+      <HintPath>..\packages\AWSSDK.Core.3.7.300.7\lib\net45\AWSSDK.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="AWSSDK.DynamoDBv2, Version=3.3.0.0, Culture=neutral, PublicKeyToken=885c28607f98e604, processorArchitecture=MSIL">
+      <HintPath>..\packages\AWSSDK.DynamoDBv2.3.7.300.7\lib\net45\AWSSDK.DynamoDBv2.dll</HintPath>
     </Reference>
     <Reference Include="AWSSDK.SecurityToken, Version=3.3.0.0, Culture=neutral, PublicKeyToken=885c28607f98e604, processorArchitecture=MSIL">
       <HintPath>..\packages\AWSSDK.SecurityToken.3.7.100.14\lib\net45\AWSSDK.SecurityToken.dll</HintPath>
@@ -166,19 +169,26 @@
   <ItemGroup>
     <Compile Include="BLL\CommentBLL.cs" />
     <Compile Include="BLL\PostBLL.cs" />
+    <Compile Include="BLL\ReactionBLL.cs" />
     <Compile Include="BLL\UserBLL.cs" />
+    <Compile Include="DALDynamo\CommentDynamoDAL.cs" />
+    <Compile Include="DALDynamo\PostDynamoDAL.cs" />
+    <Compile Include="DALDynamo\ReactionDynamoDAL.cs" />
     <Compile Include="DALNeo4J\CommentNeo4JDAL.cs" />
     <Compile Include="DALNeo4J\PostNeo4JDAL.cs" />
     <Compile Include="DALNeo4J\UserNeo4JDAL.cs" />
-    <Compile Include="DAL\CommentDAL.cs" />
-    <Compile Include="DAL\PostDAL.cs" />
-    <Compile Include="DAL\UserDAL.cs" />
+    <Compile Include="DALMongo\CommentDAL.cs" />
+    <Compile Include="DALMongo\PostDAL.cs" />
+    <Compile Include="DALMongo\UserDAL.cs" />
+    <Compile Include="DTODynamo\CommentDynamo.cs" />
+    <Compile Include="DTODynamo\PostDynamo.cs" />
+    <Compile Include="DTODynamo\ReactionDynamo.cs" />
     <Compile Include="DTONeo4J\CommentNeo4J.cs" />
     <Compile Include="DTONeo4J\PostNeo4J.cs" />
     <Compile Include="DTONeo4J\UserNeo4J.cs" />
-    <Compile Include="DTO\Comment.cs" />
-    <Compile Include="DTO\Post.cs" />
-    <Compile Include="DTO\User.cs" />
+    <Compile Include="DTOMongo\Comment.cs" />
+    <Compile Include="DTOMongo\Post.cs" />
+    <Compile Include="DTOMongo\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />
@@ -189,6 +199,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Analyzer Include="..\packages\AWSSDK.DynamoDBv2.3.7.300.7\analyzers\dotnet\cs\AWSSDK.DynamoDBv2.CodeAnalysis.dll" />
+    <Analyzer Include="..\packages\AWSSDK.DynamoDBv2.3.7.300.7\analyzers\dotnet\cs\SharedAnalysisCode.dll" />
     <Analyzer Include="..\packages\AWSSDK.SecurityToken.3.7.100.14\analyzers\dotnet\cs\AWSSDK.SecurityToken.CodeAnalysis.dll" />
   </ItemGroup>
   <ItemGroup>

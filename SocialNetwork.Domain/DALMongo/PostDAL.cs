@@ -49,8 +49,9 @@ namespace SocialNetwork.DAL
             ins.Content = text;
             ins.UserIdPost = userId;
             ins.Date = DateTime.Now;
-            posts.InsertOneAsync(ins);
-            return text;
+            var task = posts.InsertOneAsync(ins);
+            task.Wait();
+            return Convert.ToString(ins.Id);
         }
 
         public static void LikePost(string postId, string likerId)
