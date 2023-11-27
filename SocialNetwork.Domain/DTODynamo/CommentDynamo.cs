@@ -27,7 +27,7 @@ namespace SocialNetwork.Domain.DTODynamo
         [DynamoDBProperty]
         public string ModifiedDateTime { get; set; }
         [DynamoDBProperty]
-        public string ModifiedDateTimeSK { get; set; }
+        public string GSI1SK { get; set; }
         [DynamoDBProperty]
         public bool IsDeleted { get; set; }
     }

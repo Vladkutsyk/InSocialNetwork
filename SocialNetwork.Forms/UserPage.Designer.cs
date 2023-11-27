@@ -30,6 +30,9 @@
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.postBox = new System.Windows.Forms.TextBox();
+            this.addPost = new System.Windows.Forms.Button();
             this.comments = new System.Windows.Forms.DataGridView();
             this.posts = new System.Windows.Forms.DataGridView();
             this.button6 = new System.Windows.Forms.Button();
@@ -37,11 +40,14 @@
             this.button3 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.DeleteButton = new System.Windows.Forms.Button();
+            this.UpdateButton = new System.Windows.Forms.Button();
             this.commentBox = new System.Windows.Forms.TextBox();
             this.button2 = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.backButton = new System.Windows.Forms.Button();
             this.panel4 = new System.Windows.Forms.Panel();
             this.lengthBox = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
@@ -58,12 +64,9 @@
             this.label3 = new System.Windows.Forms.Label();
             this.button4 = new System.Windows.Forms.Button();
             this.boxFriend = new System.Windows.Forms.TextBox();
-            this.panel5 = new System.Windows.Forms.Panel();
-            this.postBox = new System.Windows.Forms.TextBox();
-            this.addPost = new System.Windows.Forms.Button();
-            this.backButton = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            this.panel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.comments)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.posts)).BeginInit();
             this.panel1.SuspendLayout();
@@ -73,7 +76,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.postsFriends)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.friends)).BeginInit();
             this.panel2.SuspendLayout();
-            this.panel5.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -105,6 +107,34 @@
             this.tabPage1.Size = new System.Drawing.Size(1274, 636);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Posts";
+            // 
+            // panel5
+            // 
+            this.panel5.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.panel5.Controls.Add(this.postBox);
+            this.panel5.Controls.Add(this.addPost);
+            this.panel5.Location = new System.Drawing.Point(760, 33);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(341, 125);
+            this.panel5.TabIndex = 10;
+            // 
+            // postBox
+            // 
+            this.postBox.Location = new System.Drawing.Point(33, 23);
+            this.postBox.Name = "postBox";
+            this.postBox.Size = new System.Drawing.Size(271, 22);
+            this.postBox.TabIndex = 2;
+            // 
+            // addPost
+            // 
+            this.addPost.BackColor = System.Drawing.Color.MistyRose;
+            this.addPost.Location = new System.Drawing.Point(101, 84);
+            this.addPost.Name = "addPost";
+            this.addPost.Size = new System.Drawing.Size(145, 23);
+            this.addPost.TabIndex = 0;
+            this.addPost.Text = "Add Post";
+            this.addPost.UseVisualStyleBackColor = false;
+            this.addPost.Click += new System.EventHandler(this.addPost_Click);
             // 
             // comments
             // 
@@ -174,12 +204,36 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.panel1.Controls.Add(this.DeleteButton);
+            this.panel1.Controls.Add(this.UpdateButton);
             this.panel1.Controls.Add(this.commentBox);
             this.panel1.Controls.Add(this.button2);
             this.panel1.Location = new System.Drawing.Point(760, 327);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(341, 125);
             this.panel1.TabIndex = 3;
+            // 
+            // DeleteButton
+            // 
+            this.DeleteButton.BackColor = System.Drawing.Color.MistyRose;
+            this.DeleteButton.Location = new System.Drawing.Point(101, 90);
+            this.DeleteButton.Name = "DeleteButton";
+            this.DeleteButton.Size = new System.Drawing.Size(128, 23);
+            this.DeleteButton.TabIndex = 4;
+            this.DeleteButton.Text = "Delete Comment";
+            this.DeleteButton.UseVisualStyleBackColor = false;
+            this.DeleteButton.Click += new System.EventHandler(this.DeleteButton_Click);
+            // 
+            // UpdateButton
+            // 
+            this.UpdateButton.BackColor = System.Drawing.Color.MistyRose;
+            this.UpdateButton.Location = new System.Drawing.Point(177, 61);
+            this.UpdateButton.Name = "UpdateButton";
+            this.UpdateButton.Size = new System.Drawing.Size(127, 23);
+            this.UpdateButton.TabIndex = 3;
+            this.UpdateButton.Text = "Update Comment";
+            this.UpdateButton.UseVisualStyleBackColor = false;
+            this.UpdateButton.Click += new System.EventHandler(this.button7_Click);
             // 
             // commentBox
             // 
@@ -191,9 +245,9 @@
             // button2
             // 
             this.button2.BackColor = System.Drawing.Color.MistyRose;
-            this.button2.Location = new System.Drawing.Point(101, 84);
+            this.button2.Location = new System.Drawing.Point(33, 61);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(145, 23);
+            this.button2.Size = new System.Drawing.Size(122, 23);
             this.button2.TabIndex = 0;
             this.button2.Text = "Add Comment";
             this.button2.UseVisualStyleBackColor = false;
@@ -239,6 +293,17 @@
             this.tabPage2.Size = new System.Drawing.Size(1274, 636);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Users";
+            // 
+            // backButton
+            // 
+            this.backButton.BackColor = System.Drawing.Color.RosyBrown;
+            this.backButton.Location = new System.Drawing.Point(679, 317);
+            this.backButton.Name = "backButton";
+            this.backButton.Size = new System.Drawing.Size(279, 52);
+            this.backButton.TabIndex = 11;
+            this.backButton.Text = "Back to Users";
+            this.backButton.UseVisualStyleBackColor = false;
+            this.backButton.Click += new System.EventHandler(this.backButton_Click);
             // 
             // panel4
             // 
@@ -408,45 +473,6 @@
             this.boxFriend.Size = new System.Drawing.Size(195, 22);
             this.boxFriend.TabIndex = 1;
             // 
-            // panel5
-            // 
-            this.panel5.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.panel5.Controls.Add(this.postBox);
-            this.panel5.Controls.Add(this.addPost);
-            this.panel5.Location = new System.Drawing.Point(760, 33);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(341, 125);
-            this.panel5.TabIndex = 10;
-            // 
-            // postBox
-            // 
-            this.postBox.Location = new System.Drawing.Point(33, 23);
-            this.postBox.Name = "postBox";
-            this.postBox.Size = new System.Drawing.Size(271, 22);
-            this.postBox.TabIndex = 2;
-            // 
-            // addPost
-            // 
-            this.addPost.BackColor = System.Drawing.Color.MistyRose;
-            this.addPost.Location = new System.Drawing.Point(101, 84);
-            this.addPost.Name = "addPost";
-            this.addPost.Size = new System.Drawing.Size(145, 23);
-            this.addPost.TabIndex = 0;
-            this.addPost.Text = "Add Post";
-            this.addPost.UseVisualStyleBackColor = false;
-            this.addPost.Click += new System.EventHandler(this.addPost_Click);
-            // 
-            // backButton
-            // 
-            this.backButton.BackColor = System.Drawing.Color.RosyBrown;
-            this.backButton.Location = new System.Drawing.Point(679, 317);
-            this.backButton.Name = "backButton";
-            this.backButton.Size = new System.Drawing.Size(279, 52);
-            this.backButton.TabIndex = 11;
-            this.backButton.Text = "Back to Users";
-            this.backButton.UseVisualStyleBackColor = false;
-            this.backButton.Click += new System.EventHandler(this.backButton_Click);
-            // 
             // UserPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -459,6 +485,8 @@
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
+            this.panel5.ResumeLayout(false);
+            this.panel5.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.comments)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.posts)).EndInit();
             this.panel1.ResumeLayout(false);
@@ -473,8 +501,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.friends)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
-            this.panel5.ResumeLayout(false);
-            this.panel5.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -515,5 +541,7 @@
         private System.Windows.Forms.TextBox postBox;
         private System.Windows.Forms.Button addPost;
         private System.Windows.Forms.Button backButton;
+        private System.Windows.Forms.Button DeleteButton;
+        private System.Windows.Forms.Button UpdateButton;
     }
 }

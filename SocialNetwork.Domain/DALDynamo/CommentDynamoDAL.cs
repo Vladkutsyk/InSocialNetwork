@@ -39,7 +39,7 @@ namespace SocialNetwork.Domain.DALDynamo
             comment["Username"] = username;
             comment["CommentText"] = commentText;
             comment["ModifiedDateTime"] = DateTime.Now.ToString();
-            comment["ModifiedDateTimeSK"] = "COMMENT#" + DateTime.Now.ToString() + ">";
+            comment["GSI1SK"] = "COMMENT#" + DateTime.Now.ToString() + ">";
             comment["IsDeleted"] = false;
 
             socialNetwork.PutItem(comment);
@@ -51,7 +51,7 @@ namespace SocialNetwork.Domain.DALDynamo
             comment["PK"] = "POST#<" + postId + ">";
             comment["SK"] = "COMMENT#<" + commentId + ">";
             comment["ModifiedDateTime"] = DateTime.Now.ToString();
-            comment["ModifiedDateTimeSK"] = "COMMENT#" + DateTime.Now.ToString() + ">";
+            comment["GSI1SK"] = "COMMENT#" + DateTime.Now.ToString() + ">";
             comment["IsDeleted"] = true;
             socialNetwork.UpdateItem(comment);
         }
@@ -63,7 +63,7 @@ namespace SocialNetwork.Domain.DALDynamo
             comment["SK"] = "COMMENT#<" + commentId + ">";
             comment["CommentText"] = commentText;
             comment["ModifiedDateTime"] = DateTime.Now.ToString();
-            comment["ModifiedDateTimeSK"] = "COMMENT#<" + DateTime.Now.ToString() + ">";
+            comment["GSI1SK"] = "COMMENT#<" + DateTime.Now.ToString() + ">";
             socialNetwork.UpdateItem(comment);
         }
 
@@ -97,7 +97,7 @@ namespace SocialNetwork.Domain.DALDynamo
             };
 
 
-            String keyConditionExpression = "PK = :id and begind_with(ModifiedDateTimeSK, :comm";
+            String keyConditionExpression = "PK = :id and begins_with(GSI1SK, :comm)";
             Dictionary<string, AttributeValue> expressionAttributeValues = new Dictionary<string, AttributeValue>();
             expressionAttributeValues.Add(":id", new AttributeValue
             {
@@ -121,27 +121,27 @@ namespace SocialNetwork.Domain.DALDynamo
             foreach (var currentItem in items)
             {
                 var doc = new Document();
-                bool deleted;
+                bool deleted = false;
                 foreach (string attr in currentItem.Keys)
                 {
                     if(attr == "IsDeleted")
                     {
                         deleted = currentItem[attr].BOOL;
                     }
-                    else if (attr == "ModifiedDateTimeSK"){ continue; }
-                    else if(attr == "PK" || attr == "SK")
+                    else if (attr == "GSI1SK" || attr == "PK" || attr == "SK") { continue; }
+                    /*else if(attr == "PK" || attr == "SK")
                     {
                         int ind = currentItem[attr].S.IndexOf('#');
                         int len = currentItem[attr].S.Length;
                         doc[attr] = currentItem[attr].S.Substring(ind + 2, len-ind-3);
-                    }
+                    }*/
                     else
                     {
                         doc[attr] = currentItem[attr].S;
                     }
                     
                 }
-                documentSet.Add(doc);
+                if (!deleted) { documentSet.Add(doc); }
             }
             return documentSet;
         }
@@ -161,7 +161,7 @@ namespace SocialNetwork.Domain.DALDynamo
                     AttributeName = "PK", KeyType = "HASH" //Partition key
                 },
                 new KeySchemaElement {
-                    AttributeName = "ModifiedDateTimeSK", KeyType = "RANGE" //Sort key
+                    AttributeName = "GSI1SK", KeyType = "RANGE" //Sort key
                 }
                 },
                 Projection = new Projection

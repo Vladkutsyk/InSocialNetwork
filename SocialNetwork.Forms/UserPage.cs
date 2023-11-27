@@ -10,6 +10,9 @@ using System.Windows.Forms;
 using SocialNetwork.DAL;
 using SocialNetwork.Domain.BLL;
 using SocialNetwork.UserBLL;
+using Amazon.DynamoDBv2.DocumentModel;
+using Amazon.DynamoDBv2.Model;
+using Amazon.DynamoDBv2;
 
 namespace SocialNetwork.Forms
 {
@@ -28,8 +31,14 @@ namespace SocialNetwork.Forms
         }
         private void posts_SelectionChanged(object sender, EventArgs e)
         {
+            reload_comments(sender, e);
+        }
+
+        private void reload_comments(object sender, EventArgs e)
+        {
             var comms = posts.SelectedRows[0];
-            comments.DataSource = CommentDAL.GetPostComments(comms.Cells[0].Value.ToString());
+            //comments.DataSource = CommentDAL.GetPostComments(comms.Cells[0].Value.ToString());
+            comments.DataSource = CommentBLL.GetPostComments(currentId, comms.Cells[0].Value.ToString(), currentUsername);
         }
 
         private void UserPage_Load(object sender, EventArgs e)
@@ -99,6 +108,7 @@ namespace SocialNetwork.Forms
         {
             CommentBLL.CreateComment(currentId, posts.SelectedRows[0].Cells[0].Value.ToString(),
                commentBox.Text.ToString(), currentUsername);
+            reload_comments(sender, e); 
             //CommentBLL
             //CommentDAL.AddComment(posts.SelectedRows[0].Cells[0].Value.ToString(), currentId, commentBox.Text.ToString());
         }
@@ -106,6 +116,7 @@ namespace SocialNetwork.Forms
         private void addPost_Click(object sender, EventArgs e)
         {
             PostBLL.PostBLL.CreatePost(currentId, postBox.Text.ToString(), currentUsername);
+            reload_data(sender, e);
             //PostBLL
             //PostDAL.AddPost(currentId, postBox.Text.ToString());
         }
@@ -113,6 +124,22 @@ namespace SocialNetwork.Forms
         private void backButton_Click(object sender, EventArgs e)
         {
             reload_friends(sender, e);
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            CommentBLL.UpdateComment(currentId, posts.SelectedRows[0].Cells[0].Value.ToString(),
+                comments.SelectedRows[0].Cells[1].Value.ToString(),
+                commentBox.Text.ToString(), currentUsername);
+            reload_comments(sender, e);
+        }
+
+        private void DeleteButton_Click(object sender, EventArgs e)
+        {
+            CommentBLL.DeleteComment(currentId, posts.SelectedRows[0].Cells[0].Value.ToString(), 
+                comments.SelectedRows[0].Cells[1].Value.ToString(),
+                comments.SelectedRows[0].Cells[4].Value.ToString(), currentUsername);
+            reload_comments(sender, e);
         }
     }
 }

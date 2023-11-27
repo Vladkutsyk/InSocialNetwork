@@ -41,7 +41,7 @@ namespace SocialNetwork.UserBLL
             commentDynamoDAL.DeleteCommentItem(postId, commentId);
         }
 
-        static List<Document> GetPostComments(string currentId, string postId, string author)
+        static public List<Document> GetPostComments(string currentId, string postId, string author)
         {
             var commentDynamoDAL = new CommentDynamoDAL();
             return commentDynamoDAL.QueryIndex(postId);
