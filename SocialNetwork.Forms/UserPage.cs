@@ -45,7 +45,8 @@ namespace SocialNetwork.Forms
         {
             reload_data(sender, e);
             reload_friends(sender, e);
-            friends.DataSource = UserDAL.GetUsers();
+            //friends.DataSource = UserDAL.GetUsers();
+            friends.DataSource = UserBLL.UserBLL.DataAccess();
         }
 
         private void reload_data(object sender, EventArgs e)
@@ -68,7 +69,8 @@ namespace SocialNetwork.Forms
 
         public void reload_friends(object sender, EventArgs e)
         {
-            friends.DataSource = UserDAL.GetUsers();
+            //friends.DataSource = UserDAL.GetUsers();
+            friends.DataSource = UserBLL.UserBLL.DataAccess();
             postsFriends.DataSource = PostDAL.GetSortedPosts();
             friendCheckBox.Clear();
             lengthBox.Clear();

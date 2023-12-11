@@ -3,6 +3,7 @@ using Neo4jClient.Cypher;
 using Newtonsoft.Json;
 using SocialNetwork.DAL;
 using SocialNetwork.DALNeo4J;
+using SocialNetwork.Domain.DALRedis;
 using SocialNetwork.DTO;
 using SocialNetwork.DTONeo4J;
 using System;
@@ -43,6 +44,19 @@ namespace SocialNetwork.UserBLL
         {
             SocialNetwork.DAL.UserDAL.DeleteUser(currentId, password);
             SocialNetwork.DALNeo4J.UserNeo4JDAL.DeleteUserNeo4J(currentUsername);
+        }
+
+        static public List<DTO.User> DataAccess()
+        {
+            if (UserRedisDAL.dbIsNotEmpty())
+            {
+                return UserRedisDAL.ReadUsersFromRedis();
+            }
+            else
+            {
+                UserRedisDAL.WriteUsersToRedis(UserDAL.GetUsers());
+                return UserDAL.GetUsers();
+            }
         }
     }
 }
